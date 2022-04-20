@@ -4,19 +4,11 @@ const compController = require('./controller/controller');
 const app = express();
 const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 const cors = require("cors");
-// other app.use() options ...
-app.use(expressCspHeader({ 
-    policies: { 
-        'default-src': [expressCspHeader.NONE], 
-        'img-src': [expressCspHeader.SELF], 
-    } 
-}));
 
 app.use(express.json());
 app.use(cors());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/com/', compController);
 
